@@ -3,12 +3,9 @@ const axios = require("axios");
 const { Country } = require("../db");
 
 const getCountries = async (req, res) => {
-  try {
-    let allCountry = await Country.findAll();
-    if (allCountry.length > 0) {
-      res.status(200).json(allCountry);
-    }
+  let allCountry = await Country.findAll();
 
+  if (allCountry.length === 0) {
     const response = await axios.get(URL);
     const countries = response.data;
     const destructuringCountries = countries.map((countryData) => ({
@@ -21,13 +18,11 @@ const getCountries = async (req, res) => {
       area: countryData.area,
       population: countryData.population,
     }));
-
     await Country.bulkCreate(destructuringCountries);
     allCountry = await Country.findAll();
-    res.status(200).json(allCountry);
-  } catch (error) {
-    res.status(500).json({ error: "Error al obtener los paises" });
   }
+
+  return allCountry;
 };
 
 module.exports = getCountries;
