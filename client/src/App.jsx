@@ -1,35 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Routes, Route, useLocation } from "react-router-dom";
+import React from "react";
+import { useState } from "react";
+import LandingPage from "./components/landingPage/LandingPage";
+import Home from "./components/home/Home";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const location = useLocation(); // useLocation es un gancho (hook) proporcionado por React Router, una librería utilizada para manejar la navegación en aplicaciones de React. Este gancho se utiliza para acceder al objeto de ubicación actual en tu aplicación. La ubicación contiene información sobre la URL actual y se utiliza para determinar qué componente debe renderizarse en función de la ruta.
+  const pathname = location.pathname;
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      {console.log(pathname)}
+      {pathname === "/" ? <LandingPage /> : ""}
+      <Routes>
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;
