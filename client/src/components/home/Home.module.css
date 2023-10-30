@@ -1,0 +1,13 @@
+.homeContainer {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  
+  .countryDetail {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }

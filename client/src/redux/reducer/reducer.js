@@ -1,5 +1,6 @@
 import {
   COUNTRIES,
+  SEARCHBYID,
   SEARCHBYNAME,
   FILTER,
   ORDER,
@@ -8,6 +9,7 @@ import {
 const initialState = {
   countries: [],
   activities: [],
+  countryDetail: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +19,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         countries: action.payload,
+      };
+    case SEARCHBYID:
+      return {
+        ...state,
+        countryDetail: action.payload,
       };
     case SEARCHBYNAME:
       return state;

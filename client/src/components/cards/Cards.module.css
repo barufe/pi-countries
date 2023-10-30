@@ -1,0 +1,14 @@
+/* nombreArchivo.module.css */
+
+    .card {
+        margin: 0 5px; 
+  }
+  
+  .cardsContainer {
+    /* Estilos para el contenedor de tarjetas */
+    display: flex;
+    flex-wrap: wrap;
+    /* Esto permite que las tarjetas se envuelvan a la siguiente línea si no hay suficiente espacio */
+    justify-content: center; /* Alinear las tarjetas al centro */
+    /* Puedes ajustar estos estilos según tus preferencias */
+  }
