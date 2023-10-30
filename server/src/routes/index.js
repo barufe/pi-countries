@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const getCountries = require("../controller/getCountries");
-const getCountriesById = require("../controller/getCountriesById");
+const getCountrieById = require("../controller/getCountrieById");
 const getCountryByName = require("../controller/getCountryByName");
 const postActivity = require("../controller/postActivity");
-const getActivities = require("../controller/getActivities")
+const getActivities = require("../controller/getActivities");
 
 const router = Router();
 router.get("/countries", async (req, res) => {
@@ -28,8 +28,8 @@ router.get("/countries", async (req, res) => {
   }
 });
 
-router.get("/countries/:idPais", getCountriesById);
+router.get("/countries/:idPais", getCountrieById);
 router.post("/activities", postActivity);
-router.get("/activities", getActivities)
+router.get("/activities", getActivities);
 
 module.exports = router;

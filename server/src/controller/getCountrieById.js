@@ -1,6 +1,6 @@
 const { Country, Activity } = require("../db");
 
-const getCountriesById = async (req, res) => {
+const getCountrieById = async (req, res) => {
   try {
     const { idPais } = req.params;
 
@@ -15,4 +15,4 @@ const getCountriesById = async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
 };
-module.exports = getCountriesById;
+module.exports = getCountrieById;
