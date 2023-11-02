@@ -1,5 +1,5 @@
 export const COUNTRIES = "COUNTRIES";
-export const SEARCHBYID = "SEARCHBYID"
-export const SEARCHBYNAME = "SEARCHBYNAME";
-export const FILTER = "FILTER";
-export const ORDER = "ORDER";
+export const SEARCHBYID = "SEARCHBYID";
+export const CREATEACTIVITY = "CREATEACTIVITY";
+export const FILTERCONTINENTS = "FILTERCONTINENTS";
+export const ORDERCOUNTRIES = "ORDERCOUNTRIES";
