@@ -1,9 +1,13 @@
 import {
   COUNTRIES,
+  ACTIVITIES,
   SEARCHBYID,
+  SEARCHBYNAME,
   CREATEACTIVITY,
   FILTERCONTINENTS,
+  FILTERACTIVITIES,
   ORDERCOUNTRIES,
+  ORDERBYPOPULATION,
 } from "../actionsTypes/actionsTypes";
 
 import axios from "axios";
@@ -18,6 +22,20 @@ export const getCountries = () => {
       console.log(response.data);
       dispatch({
         type: COUNTRIES,
+        payload: response.data,
+      });
+    } catch (error) {
+      throw Error(error.message);
+    }
+  };
+};
+
+export const getActivities = (actividad) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${endpoint}/activities`);
+      dispatch({
+        type: ACTIVITIES,
         payload: response.data,
       });
     } catch (error) {
@@ -42,6 +60,22 @@ export const getCountrieById = (id) => {
   };
 };
 
+export const getCountriesByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${endpoint}/countries?name=${name}`);
+      console.log("Tengo la data");
+      console.log(response.data);
+      dispatch({
+        type: SEARCHBYNAME,
+        payload: response.data,
+      });
+    } catch (error) {
+      throw Error(error.message);
+    }
+  };
+};
+
 export const createActivity = (activity) => {
   return async (dispatch) => {
     try {
@@ -57,6 +91,21 @@ export const createActivity = (activity) => {
   };
 };
 
+export const filterContinents = (continent) => {
+  console.log(continent);
+  return {
+    type: FILTERCONTINENTS,
+    payload: continent,
+  };
+};
+export const filterActivities = (activity) => {
+  console.log(activity);
+  return {
+    type: FILTERACTIVITIES,
+    payload: activity,
+  };
+};
+
 export const orderCountries = (order) => {
   console.log(order);
   return {
@@ -65,10 +114,10 @@ export const orderCountries = (order) => {
   };
 };
 
-export const filterContinents = (continent) => {
-  console.log(continent);
+export const orderByPopulation = (order) => {
+  console.log(order);
   return {
-    type: FILTERCONTINENTS,
-    payload: continent,
+    type: ORDERBYPOPULATION,
+    payload: order,
   };
 };

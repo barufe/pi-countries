@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getCountries,
+  getActivities,
+  getCountriesByName,
   orderCountries,
+  orderByPopulation,
+  filterActivities,
   filterContinents,
 } from "../../redux/actions/actions";
 import Cards from "../cards/Cards";
@@ -14,6 +18,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
+  
   const filteredCountries = useSelector((state) => state.filteredCountries);
   const [error, setError] = useState(false);
 
@@ -21,66 +26,43 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivities()); // Recibo mis actividades
   }, [dispatch]);
 
+  const handleFilterByName = (name) => {
+    dispatch(getCountriesByName(name));
+    aux ? setAux(false) : setAux(true);
+  };
+
   const handleOrder = (event) => {
-    dispatch(orderCountries(event.target.value));
+    dispatch(orderCountries(event));
+    aux ? setAux(false) : setAux(true);
+  };
+
+  const handleOrderByPopulation = (event) => {
+    dispatch(orderByPopulation(event));
     aux ? setAux(false) : setAux(true);
   };
 
   const handleFilter = (event) => {
-    dispatch(filterContinents(event.target.value));
+    dispatch(filterContinents(event));
     aux ? setAux(false) : setAux(true);
   };
-
-  const handleSearch = (name) => {
-    if (name) {
-      const filtered = countries.filter((country) =>
-        country.name.toLowerCase().includes(name.toLowerCase())
-      );
-      setFilteredCountries(filtered);
-      setError(filtered.length === 0); // Establece error si no hay coincidencias
-    } else {
-      setFilteredCountries([]);
-      setError(false);
-    }
+  const handleFilterActivities = (event) => {
+    dispatch(filterActivities(event));
+    aux ? setAux(false) : setAux(true);
   };
 
   return (
     <div className={styles.homeContainer}>
       <h2>Estamos en home</h2>
-      <SearchBar onSearch={handleSearch} />
-
-      <button>
-        <Link to="/activity">Crear actividad</Link>
-      </button>
-
-      {/*ORDENAR ASC_DES DEBERIA IR AL SEARCHBAR */}
-      <div>
-        <select onChange={handleOrder} disabled={false}>
-          <option value="none" hidden>
-            Ordenar
-          </option>
-          <option value="ascendente">Ascendente</option>
-          <option value="descendente">Descendente</option>
-        </select>
-      </div>
-
-      {/* Dropdown para filtrar por continente */}
-      <select onChange={handleFilter}>
-        <option value="Todos">Todos los continentes</option>
-        <option value="Africa">Africa</option>
-        <option value="Antarctica">Antarctica</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europa</option>
-        <option value="North America">Norte América</option>
-        <option value="Oceania">Oceania</option>
-        <option value="South America">Sur América</option>
-        {/* Agrega más opciones según tus datos */}
-      </select>
-
-      {/*FILTRAR POR CONTINENTE DEBERIA IR AL SEARCHBAR */}
-
+      <SearchBar
+        onSearch={handleFilterByName}
+        onFilter={handleFilter}
+        onFilterActivities={handleFilterActivities}
+        onOrder={handleOrder}
+        onOrderByPopulation={handleOrderByPopulation}
+      />
       {error ? ( // Verifica si hay un error y muestra el mensaje correspondiente
         <div>No se han encontrado países con ese nombre.</div>
       ) : (

@@ -4,9 +4,9 @@ const validateForm = (activity) => {
     if (activity.name === "") {
       errors.name = "El campo no puede estar vacío";
     }
-    if (/^[a-zA-Z]+$/.test(activity.name)){
+    /* if (/^[a-zA-Z]+$/.test(activity.name)){
       errors.name = "No puede contener numeros ni simbolos"
-    }
+    } */
     if (activity.difficulty === "") {
       errors.difficulty = "El campo no puede estar vacío";
     }

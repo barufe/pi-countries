@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createActivity } from "../../redux/actions/actions";
+import { createActivity, getActivities } from "../../redux/actions/actions";
 import { useSelector } from "react-redux";
 import validateForm from "./validation";
 import styles from "./FormPage.module.css";
