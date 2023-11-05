@@ -13,12 +13,13 @@ import {
 import Cards from "../cards/Cards";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./Home.module.css";
-import { Link } from "react-router-dom";
+
 
 const Home = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 10;
   const filteredCountries = useSelector((state) => state.filteredCountries);
   const [error, setError] = useState(false);
 
@@ -31,25 +32,31 @@ const Home = () => {
 
   const handleFilterByName = (name) => {
     dispatch(getCountriesByName(name));
+    setCurrentPage(1); 
     aux ? setAux(false) : setAux(true);
   };
 
   const handleOrder = (event) => {
     dispatch(orderCountries(event));
+    setCurrentPage(1); 
     aux ? setAux(false) : setAux(true);
   };
 
   const handleOrderByPopulation = (event) => {
     dispatch(orderByPopulation(event));
+    setCurrentPage(1); 
     aux ? setAux(false) : setAux(true);
   };
 
   const handleFilter = (event) => {
     dispatch(filterContinents(event));
+    setCurrentPage(1); 
     aux ? setAux(false) : setAux(true);
   };
+
   const handleFilterActivities = (event) => {
     dispatch(filterActivities(event));
+    setCurrentPage(1); 
     aux ? setAux(false) : setAux(true);
   };
 
@@ -68,8 +75,7 @@ const Home = () => {
       ) : (
         <Cards
           countries={
-            filteredCountries.length > 0 ? filteredCountries : countries
-          }
+            filteredCountries} currentPage={currentPage} setCurrentPage={setCurrentPage} cardsPerPage={cardsPerPage}
         />
       )}
     </div>

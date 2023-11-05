@@ -15,7 +15,7 @@ const Detail = () => {
     dispatch(getCountrieById(params?.id))
       .then(() => setError(false))
       .catch(() => setError(true));
-  }, [dispatch, params]);
+  }, [params]);
 
   return (
     <div className={styles.detailContainer}>

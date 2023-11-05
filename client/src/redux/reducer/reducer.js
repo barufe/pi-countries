@@ -1,3 +1,4 @@
+import { filterContinents } from "../actions/actions";
 import {
   COUNTRIES,
   ACTIVITIES,
@@ -15,8 +16,8 @@ const initialState = {
   countriesWitchActivities: [],
   activities: [],
   filteredCountries: [],
-  filteredActivities: [],
   countryDetail: null,
+  currentPage: 1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -50,7 +51,7 @@ const reducer = (state = initialState, action) => {
       let filtered = state.countries;
       console.log("FILTER COUNTRIES");
       console.log(state.filteredCountries);
-      if (action.payload !== "Todas") {
+      if (action.payload !== "Todos") {
         filtered = state.countries.filter((country) => {
           return country.continents.includes(action.payload);
         });
@@ -63,20 +64,13 @@ const reducer = (state = initialState, action) => {
       let filteredActivities = state.countriesWitchActivities;
       console.log("Actividades del filtroo");
       console.log(filteredActivities);
-      if (action.payload !== "Todas") {
-        console.log(
-          `Estas son las actividades filtradas por: ${action.payload}`
-        );
-
-      filteredActivities = state.countriesWitchActivities.filter(
-          (country) =>
-            country.Activities.some(
-              (activity) => activity.name === action.payload
-
-            )
+      if (action.payload !== "Todos") {
+        filteredActivities = state.countriesWitchActivities.filter((country) =>
+          country.Activities.some(
+            (activity) => activity.name === action.payload
+          )
         );
       }
-
       console.log(`${filteredActivities} Estas son mis actividades`);
       return {
         ...state,

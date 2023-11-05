@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import Card from '../card/Card';
-import styles from './Cards.module.css'; // Importa los estilos
+import React, { useState } from "react";
+import Card from "../card/Card";
+import styles from "./Cards.module.css"; // Importa los estilos
 
-const Cards = ({ countries }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 10;
-
+const Cards = ({ countries, currentPage, setCurrentPage, cardsPerPage }) => {
   if (!countries || !Array.isArray(countries)) {
     return <div>No se han encontrado países.</div>;
   }
@@ -18,26 +15,43 @@ const Cards = ({ countries }) => {
 
   return (
     <div className={styles.cardsContainer}>
-      {currentCards.map(({ id, name, flag_image, continents, capital, subregion, area, population }) => (
-        <div key={id} className={styles.card}>
-          <Card
-            id={id}
-            name={name}
-            flag_image={flag_image}
-            continents={continents}
-            capital={capital}
-            subregion={subregion}
-            area={area}
-            population={population}
-          />
-        </div>
-      ))}
+      {currentCards.map(
+        ({
+          id,
+          name,
+          flag_image,
+          continents,
+          capital,
+          subregion,
+          area,
+          population,
+        }) => (
+          <div key={id} className={styles.card}>
+            <Card
+              id={id}
+              name={name}
+              flag_image={flag_image}
+              continents={continents}
+              capital={capital}
+              subregion={subregion}
+              area={area}
+              population={population}
+            />
+          </div>
+        )
+      )}
       {/* Botones para cambiar de página */}
       <div className={styles.footer}>
-        <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
           Anterior
         </button>
-        <span>   Página {currentPage} de {totalPages}   </span>
+        <span>
+          {" "}
+          Página {currentPage} de {totalPages}{" "}
+        </span>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={indexOfLastCard >= countries.length}

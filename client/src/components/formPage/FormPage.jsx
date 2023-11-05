@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createActivity, getActivities } from "../../redux/actions/actions";
+import { createActivity, getCountries } from "../../redux/actions/actions";
 import { useSelector } from "react-redux";
 import validateForm from "./validation";
 import styles from "./FormPage.module.css";
@@ -30,7 +30,6 @@ const FormPage = () => {
     const updatedCountries = activity.countries.includes(selectedCountry)
       ? activity.countries.filter((country) => country !== selectedCountry)
       : [...activity.countries, selectedCountry];
-
     setActivity({ ...activity, countries: updatedCountries });
   };
   // Función para validar el formulario
@@ -40,6 +39,10 @@ const FormPage = () => {
       dispatch(createActivity(activity));
     }
   };
+  useEffect(() => {
+    // Disparar la acción para obtener los países
+    dispatch(getCountries());
+  }, [dispatch]);
 
   useEffect(() => {
     if (
