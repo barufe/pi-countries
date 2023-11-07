@@ -1,4 +1,3 @@
-// Home.js
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,55 +13,45 @@ import Cards from "../cards/Cards";
 import SearchBar from "../searchBar/SearchBar";
 import styles from "./Home.module.css";
 
-
 const Home = () => {
   const dispatch = useDispatch();
-  const countries = useSelector((state) => state.countries);
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 10;
   const filteredCountries = useSelector((state) => state.filteredCountries);
   const [error, setError] = useState(false);
-
-  const [aux, setAux] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 10;
 
   useEffect(() => {
     dispatch(getCountries());
-    dispatch(getActivities()); // Recibo mis actividades
+    dispatch(getActivities());
   }, [dispatch]);
 
   const handleFilterByName = (name) => {
+    setCurrentPage(1);
     dispatch(getCountriesByName(name));
-    setCurrentPage(1); 
-    aux ? setAux(false) : setAux(true);
   };
 
   const handleOrder = (event) => {
+    setCurrentPage(1);
     dispatch(orderCountries(event));
-    setCurrentPage(1); 
-    aux ? setAux(false) : setAux(true);
   };
 
   const handleOrderByPopulation = (event) => {
+    setCurrentPage(1);
     dispatch(orderByPopulation(event));
-    setCurrentPage(1); 
-    aux ? setAux(false) : setAux(true);
   };
 
   const handleFilter = (event) => {
+    setCurrentPage(1);
     dispatch(filterContinents(event));
-    setCurrentPage(1); 
-    aux ? setAux(false) : setAux(true);
   };
 
   const handleFilterActivities = (event) => {
+    setCurrentPage(1);
     dispatch(filterActivities(event));
-    setCurrentPage(1); 
-    aux ? setAux(false) : setAux(true);
   };
 
   return (
     <div className={styles.homeContainer}>
-      <h2>Estamos en home</h2>
       <SearchBar
         onSearch={handleFilterByName}
         onFilter={handleFilter}
@@ -70,13 +59,35 @@ const Home = () => {
         onOrder={handleOrder}
         onOrderByPopulation={handleOrderByPopulation}
       />
-      {error ? ( // Verifica si hay un error y muestra el mensaje correspondiente
+      {error ? (
         <div>No se han encontrado países con ese nombre.</div>
       ) : (
         <Cards
-          countries={
-            filteredCountries} currentPage={currentPage} setCurrentPage={setCurrentPage} cardsPerPage={cardsPerPage}
+          countries={filteredCountries}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          cardsPerPage={cardsPerPage}
         />
+      )}
+      {!filteredCountries || !Array.isArray(filteredCountries) ? null : (
+        <div className={styles.footer}>
+          <button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Anterior
+          </button>
+          <span>
+            Página {currentPage} de{" "}
+            {Math.ceil(filteredCountries.length / cardsPerPage)}
+          </span>
+          <button
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={currentPage * cardsPerPage >= filteredCountries.length}
+          >
+            Siguiente
+          </button>
+        </div>
       )}
     </div>
   );

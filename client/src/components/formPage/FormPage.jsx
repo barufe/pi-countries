@@ -4,6 +4,7 @@ import { createActivity, getCountries } from "../../redux/actions/actions";
 import { useSelector } from "react-redux";
 import validateForm from "./validation";
 import styles from "./FormPage.module.css";
+import { Link } from "react-router-dom";
 
 const FormPage = () => {
   const countries = useSelector((state) => state.countries);
@@ -36,6 +37,7 @@ const FormPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.entries(errors).length === 0) {
+      //<Link to="/detail/home"></Link>
       dispatch(createActivity(activity));
     }
   };
@@ -78,11 +80,11 @@ const FormPage = () => {
             value={activity.difficulty}
             onChange={handleChange}
           >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="1">Muy facil</option>
+            <option value="2">Facil</option>
+            <option value="3">Medio</option>
+            <option value="4">Dificil</option>
+            <option value="5">Muy Dificil</option>
           </select>
           {errors.difficulty && (
             <p className={styles.error}>{errors.difficulty}</p>
@@ -111,22 +113,26 @@ const FormPage = () => {
 
         <div className={styles.countryCheckboxes}>
           <label>Países:</label>
-          {countries.map((country) => (
-            <div key={country.id}>
-              <input
-                type="checkbox"
-                id={country.id}
-                value={country.id}
-                checked={activity.countries.includes(country.id)}
-                onChange={handleCountryChange}
-              />
-              <label htmlFor={country.id}>{country.name}</label>
-            </div>
-          ))}
+          {countries
+            .slice() // Copia el array para evitar modificar el original
+            .sort((a, b) => a.name.localeCompare(b.name)) // Ordena los países por el nombre en orden ascendente
+            .map((country) => (
+              <div key={country.id}>
+                <input
+                  type="checkbox"
+                  id={country.id}
+                  value={country.id}
+                  checked={activity.countries.includes(country.id)}
+                  onChange={handleCountryChange}
+                />
+                <label htmlFor={country.id}>{country.name}</label>
+              </div>
+            ))}
           {errors.countries && (
             <p className={styles.error}>{errors.countries}</p>
           )}
         </div>
+
         <button type="submit" onClick={handleSubmit}>
           Crear actividad turística
         </button>

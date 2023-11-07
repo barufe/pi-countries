@@ -1,13 +1,34 @@
 .homeContainer {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  
-  .countryDetail {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
+  font-family: Arial, sans-serif;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  background-color: #f9f9f9;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.footer button {
+  padding: 10px;
+  margin: 30px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.footer span {
+  font-weight: bold;
+}

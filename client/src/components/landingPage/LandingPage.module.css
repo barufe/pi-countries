@@ -1,37 +1,84 @@
+/* LandingPage.module.css */
+
+/* Estilos para el contenedor principal */
 .landing-page {
-  width: 100%;
-  height: 100vh;
-  margin: 0; /* Asegúrate de que no haya márgenes */
-  padding: 0; /* Asegúrate de que no haya relleno */
-  border: 0; /* Asegúrate de que no haya bordes */
-  background-image: url("../../assets/mundo.png");
-  background-size: 600px 600px;
-  background-position: left center;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* Otros estilos personalizados, como colores de texto, márgenes, etc. */
-}
-.heading {
-  color: #333; /* Color de texto */
-  font-size: 40px; /* Tamaño de fuente */
-  font-weight: bold; /* Peso de la fuente (negrita) */
-  text-align: center; /* Alineación del texto */
+  text-align: center;
 }
 
-/* Estilo para el botón */
-.nav-button {
-  background-color: navy; /* Fondo azul marino */
-  color: white; /* Color de texto del botón */
-  padding: 10px 20px; /* Relleno del botón */
-  border: none; /* Sin borde */
-  border-radius: 10px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
+/* Estilos para el contenedor de imágenes */
+.images-container {
+  position: relative;
+  display: inline-block;
 }
 
-/* Cambiar el color del botón al pasar el cursor por encima */
-.nav-button:hover {
-  background-color: #001f3f; /* Color de fondo más oscuro al pasar el cursor */
+/* Estilos para la imagen "paises" */
+.paises-image {
+  width: 60%;
+  height: auto;
+}
+
+/* Estilos para el contenedor de "mundo" y el botón */
+.mundo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Estilos para la imagen "mundo" */
+.mundo-image {
+  width: 60%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Estilos para el botón en el centro de la imagen "mundo" */
+.center-button {
+  font-family: cursive;
+  position: absolute;
+  font-size: 20px;
+  border: none;
+  border-radius: 15px;
+  color: #ffffff;
+  background-color: rgb(13, 0, 70); /* Color de fondo */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sutil sombra */
+  transition: background-color 0.3s ease-in-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* Efecto al pasar el mouse */
+.center-button:hover {
+  color: #000000;
+  background-color: rgb(255, 255, 255);
+  transition: background-color 0.3s ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mundo-image {
+  width: 60%; /* Ajusta el ancho según sea necesario */
+  height: auto;
+  animation: rotate 30s linear infinite; /* Duración, tipo, y repetición de la animación */
+}
+
+.palpitar {
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.5; /* Reduce la opacidad a la mitad al inicio */
+  }
+  100% {
+    opacity: 1; /* Restaura la opacidad al valor normal a mitad de la animación */
+  }
 }

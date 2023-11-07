@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "../card/Card";
-import styles from "./Cards.module.css"; // Importa los estilos
+import styles from "./Cards.module.css";
 
-const Cards = ({ countries, currentPage, setCurrentPage, cardsPerPage }) => {
+const Cards = ({ countries, currentPage, cardsPerPage }) => {
+  console.log(countries);
   if (!countries || !Array.isArray(countries)) {
     return <div>No se han encontrado países.</div>;
   }
 
-  // Lógica para calcular los índices de los elementos a mostrar en la página actual
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = countries.slice(indexOfFirstCard, indexOfLastCard);
-  const totalPages = Math.ceil(countries.length / cardsPerPage);
 
   return (
     <div className={styles.cardsContainer}>
@@ -40,25 +39,6 @@ const Cards = ({ countries, currentPage, setCurrentPage, cardsPerPage }) => {
           </div>
         )
       )}
-      {/* Botones para cambiar de página */}
-      <div className={styles.footer}>
-        <button
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Anterior
-        </button>
-        <span>
-          {" "}
-          Página {currentPage} de {totalPages}{" "}
-        </span>
-        <button
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={indexOfLastCard >= countries.length}
-        >
-          Siguiente
-        </button>
-      </div>
     </div>
   );
 };
