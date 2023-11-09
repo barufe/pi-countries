@@ -18,8 +18,6 @@ export const getCountries = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${endpoint}/countries`);
-      console.log("Tengo la data");
-      console.log(response.data);
       dispatch({
         type: COUNTRIES,
         payload: response.data,
@@ -48,8 +46,6 @@ export const getCountrieById = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${endpoint}/countries/${id}`);
-      console.log("Tengo la data del id");
-      console.log(response.data);
       dispatch({
         type: SEARCHBYID,
         payload: response.data,
@@ -64,8 +60,6 @@ export const getCountriesByName = (name) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`${endpoint}/countries?name=${name}`);
-      console.log("Tengo la data");
-      console.log(response.data);
       dispatch({
         type: SEARCHBYNAME,
         payload: response.data,
@@ -80,7 +74,6 @@ export const createActivity = (activity) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${endpoint}/activities`, activity);
-      console.log(response.data);
       dispatch({
         type: CREATEACTIVITY,
         payload: response.data,
@@ -92,14 +85,13 @@ export const createActivity = (activity) => {
 };
 
 export const filterContinents = (continent) => {
-  console.log(continent);
   return {
     type: FILTERCONTINENTS,
     payload: continent,
   };
 };
+
 export const filterActivities = (activity) => {
-  console.log(activity);
   return {
     type: FILTERACTIVITIES,
     payload: activity,
@@ -107,7 +99,6 @@ export const filterActivities = (activity) => {
 };
 
 export const orderCountries = (order) => {
-  console.log(order);
   return {
     type: ORDERCOUNTRIES,
     payload: order,
@@ -115,7 +106,6 @@ export const orderCountries = (order) => {
 };
 
 export const orderByPopulation = (order) => {
-  console.log(order);
   return {
     type: ORDERBYPOPULATION,
     payload: order,

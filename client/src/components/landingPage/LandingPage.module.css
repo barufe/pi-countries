@@ -1,23 +1,17 @@
-/* LandingPage.module.css */
-
-/* Estilos para el contenedor principal */
 .landing-page {
   text-align: center;
 }
 
-/* Estilos para el contenedor de imágenes */
 .images-container {
   position: relative;
   display: inline-block;
 }
 
-/* Estilos para la imagen "paises" */
 .paises-image {
   width: 60%;
   height: auto;
 }
 
-/* Estilos para el contenedor de "mundo" y el botón */
 .mundo-container {
   position: absolute;
   top: 50%;
@@ -26,7 +20,6 @@
   text-align: center;
 }
 
-/* Estilos para la imagen "mundo" */
 .mundo-image {
   width: 60%;
   height: auto;
@@ -34,22 +27,21 @@
   margin: 0 auto;
 }
 
-/* Estilos para el botón en el centro de la imagen "mundo" */
 .center-button {
-  font-family: cursive;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   position: absolute;
   font-size: 20px;
   border: none;
   border-radius: 15px;
   color: #ffffff;
-  background-color: rgb(13, 0, 70); /* Color de fondo */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sutil sombra */
+  background-color: rgb(13, 0, 70); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   transition: background-color 0.3s ease-in-out;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* Efecto al pasar el mouse */
+
 .center-button:hover {
   color: #000000;
   background-color: rgb(255, 255, 255);
@@ -66,19 +58,7 @@
 }
 
 .mundo-image {
-  width: 60%; /* Ajusta el ancho según sea necesario */
+  width: 60%; 
   height: auto;
-  animation: rotate 30s linear infinite; /* Duración, tipo, y repetición de la animación */
-}
-
-.palpitar {
-  animation: pulse 1s infinite;
-}
-@keyframes pulse {
-  0% {
-    opacity: 0.5; /* Reduce la opacidad a la mitad al inicio */
-  }
-  100% {
-    opacity: 1; /* Restaura la opacidad al valor normal a mitad de la animación */
-  }
+  animation: rotate 30s linear infinite; 
 }

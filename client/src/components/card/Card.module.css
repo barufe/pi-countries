@@ -1,37 +1,40 @@
 /* card.module.css */
 
 .cardContainer {
-  font-family: cursive;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
   margin: 5px;
-  width: 200px; /* Ancho fijo para todas las tarjetas */
-  height: 200px;
+  width: 200px; 
+  height: 230px;
   text-align: center;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s;
 }
+.cardName {
+  text-decoration: none;
+  color: #000000;
+  font-size: 13px;
+}
 
 .cardTitle {
   margin-bottom: 5px;
-  font-size: 14px; /* Tamaño del texto para el título */
 }
 
 .cardImage {
   max-width: 100%;
   border-radius: 8px;
-  border: 0.5px solid #000000; /* Agregar borde a la imagen */
-
-  width: 90%; /* Ajusta el ancho al 100% del contenedor */
+  border: 0.5px solid #000000; 
+  width: 90%; 
   height: 100px;
-  object-fit: fill; /* Ajusta el tamaño manteniendo la relación de aspecto */
+  object-fit: fill; 
 }
 
 .cardContinent {
   color: #666;
-  font-size: 16px; /* Tamaño del texto para el continente */
+  font-size: 16px; 
 }
 
 .cardFront,
@@ -44,8 +47,8 @@
 
 .cardBack {
   transform: rotateY(180deg);
-  background-color: rgb(238, 238, 238); /* Fondo negro para la parte trasera de la tarjeta */
-  color: black; /* Texto blanco para contrastar con el fondo oscuro */
+  background-color: rgb(238,238,238); 
+  color: black; 
   font-size: 12px;
   text-align: center;
   border-radius: 8px;
@@ -54,14 +57,15 @@
 .flipped {
   transform: rotateY(180deg);
 }
+
 .footer {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 0px;
 }
+
 .info {
-  font-size: 10px; /* Asegura que prevalezca */
+  font-size: 10px; 
   color: blue;
-  /* Otros estilos */
 }

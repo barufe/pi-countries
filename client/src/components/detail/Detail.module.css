@@ -1,27 +1,38 @@
-/* Detail.module.css */
-
+.errorContainer {
+  text-align: center;
+  background: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+}
 .detailContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .errorContainer {
-    text-align: center;
-    background: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #e6e6e6;
-    border-radius: 8px;
-  }
-  
-  .countryDetails {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .countryDetails h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.countryCard {
+  flex: 0 0 48%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.activitiesContainer {
+  flex: 0 0 48%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.noData {
+  text-align: center;
+}

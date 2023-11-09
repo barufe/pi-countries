@@ -3,7 +3,7 @@ import Card from "../card/Card";
 import styles from "./Cards.module.css";
 
 const Cards = ({ countries, currentPage, cardsPerPage }) => {
-  console.log(countries);
+  
   if (!countries || !Array.isArray(countries)) {
     return <div>No se han encontrado países.</div>;
   }
@@ -13,18 +13,10 @@ const Cards = ({ countries, currentPage, cardsPerPage }) => {
   const currentCards = countries.slice(indexOfFirstCard, indexOfLastCard);
 
   return (
+    
     <div className={styles.cardsContainer}>
-      {currentCards.map(
-        ({
-          id,
-          name,
-          flag_image,
-          continents,
-          capital,
-          subregion,
-          area,
-          population,
-        }) => (
+    
+      {currentCards.map(({id,name,flag_image,continents,capital,subregion,area,population,}) => (
           <div key={id} className={styles.card}>
             <Card
               id={id}
@@ -37,8 +29,7 @@ const Cards = ({ countries, currentPage, cardsPerPage }) => {
               population={population}
             />
           </div>
-        )
-      )}
+          ))}
     </div>
   );
 };

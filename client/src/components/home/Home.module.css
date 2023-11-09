@@ -1,9 +1,7 @@
 .homeContainer {
-  font-family: Arial, sans-serif;
-
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   border: 1px solid #ccc;
   border-radius: 5px;
-
   background-color: #f9f9f9;
 }
 
@@ -31,4 +29,8 @@
 
 .footer span {
   font-weight: bold;
+}
+
+.error {
+  padding: 20px;
 }
