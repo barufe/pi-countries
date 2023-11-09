@@ -18,10 +18,10 @@ const getCountries = async (req, res) => {
       area: countryData.area,
       population: countryData.population,
     }));
+
     await Country.bulkCreate(destructuringCountries);
     allCountry = await Country.findAll();
   }
-
   return allCountry;
 };
 

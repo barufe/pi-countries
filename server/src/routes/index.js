@@ -6,18 +6,16 @@ const postActivity = require("../controller/postActivity");
 const getActivities = require("../controller/getActivities");
 
 const router = Router();
+
 router.get("/countries", async (req, res) => {
   const name = req.query.name;
-  console.log(name);
   try {
     if (name) {
-      console.log("Entre a busqueda por nombre");
       const countries = await getCountryByName(name);
-      countries.length > 0
+      countries
         ? res.status(200).json(countries)
         : res.status(404).json({ error: "No se encontro información" });
     } else {
-      console.log("Entre a busqueda por todo");
       const countries = await getCountries();
       countries.length > 0
         ? res.status(200).json(countries)

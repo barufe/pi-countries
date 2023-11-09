@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
-  // Define el modelo 'Country'
+
   const Country = sequelize.define(
     "Country",
     {
@@ -25,11 +24,9 @@ module.exports = (sequelize) => {
       },
       capital: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        //  allowNull: false, // ME DICE QUE ES OBLIGATORIO PERO ALGUNO LO TRAE VACIO
       },
       subregion: {
         type: DataTypes.STRING, 
-        //allowNull: false, // ME DICE QUE ES OBLIGATORIO PERO ALGUNO LO TRAE VACIO
       },
       area: {
         type: DataTypes.FLOAT, 
